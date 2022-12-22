@@ -9,7 +9,13 @@ export class Product extends BaseModel {
   @Column()
   description: string;
 
-  @Column({ type: 'bigint' })
+  @Column({
+    type: 'bigint',
+    transformer: {
+      to: (value) => Math.round(value),
+      from: (value) => value,
+    },
+  })
   price: number;
 
   @AfterLoad() _convertNumerics() {
