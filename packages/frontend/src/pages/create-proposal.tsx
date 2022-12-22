@@ -49,7 +49,7 @@ const Page = () => {
 
   useDebounce(
     () => {
-      setDebouncedProductInput(customerInput);
+      setDebouncedProductInput(productInput);
     },
     500,
     [productInput]
