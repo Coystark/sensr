@@ -1,0 +1,38 @@
+<html>
+  <body>
+    <center>
+      <div
+        style='background-color: #d3d3d3; max-width: 840px; margin: 0; padding: 30px;'
+      >
+        <h2 style='color: #0C284D; text-align: center'>
+          Proposta
+        </h2>
+
+        <table
+          style='border: 1px solid #0C284D; border-collapse: collapse; width: 100%'
+        >
+          <thead>
+            <tr>
+              <th style='border: 1px solid #0C284D; padding: 10px'>Produto</th>
+              <th style='border: 1px solid #0C284D; padding: 10px'>Preço</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each products}}
+              <tr>
+                <td style='border: 1px solid #0C284D; padding: 10px'>
+                  {{name}}
+                </td>
+                <td style='border: 1px solid #0C284D; padding: 10px'>
+                  {{price}}
+                </td>
+              </tr>
+            {{/each}}
+
+          </tbody>
+        </table>
+
+      </div>
+    </center>
+  </body>
+</html>

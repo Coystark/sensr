@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:14
+    networks:
+      - main-net
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+      PG_DATA: /var/lib/postgresql/data
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+
+  adminer:
+    image: adminer
+    restart: always
+    environment:
+      ADMINER_DEFAULT_DB_HOST: postgres
+      ADMINER_DEFAULT_DB_NAME: postgres
+    ports:
+      - 8080:8080
+    networks:
+      - main-net
+
+  mailcatcher:
+    image: tophfr/mailcatcher
+    container_name: mailserver
+    ports:
+      - '1025:25'
+      - 1080:80
+
+volumes:
+  db-data:
+
+networks:
+  main-net:
+    driver: bridge
