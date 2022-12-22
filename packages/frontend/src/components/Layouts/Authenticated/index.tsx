@@ -83,10 +83,10 @@ export const AuthenticatedLayout: React.FC<IAuthenticatedLayout> = ({
             sx={{
               display: "flex",
               alignItems: "center",
-              justifyContent: "flex-end",
-              px: [1],
+              justifyContent: "space-between",
             }}
           >
+            <Typography>Sensr Dashboard</Typography>
             <IconButton onClick={toggleDrawer}>
               <ChevronLeftIcon />
             </IconButton>

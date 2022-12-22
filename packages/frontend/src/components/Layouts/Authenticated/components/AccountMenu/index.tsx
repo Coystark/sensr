@@ -45,6 +45,7 @@ export const AccountMenu: React.FC = () => {
         open={open}
         onClose={handleClose}
         onClick={handleClose}
+        // Add arrow to menu
         PaperProps={{
           elevation: 0,
           sx: {
