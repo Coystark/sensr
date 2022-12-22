@@ -22,6 +22,7 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
   const isAuthenticated = useUserStore((state) => state.isAuthenticated);
+  const signOut = useUserStore((state) => state.signOut);
 
   useEffect(() => {
     if (!router.isReady) return;
@@ -50,6 +51,12 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
       baseUrl={process.env.NEXT_PUBLIC_API_URL as string}
       axiosConfig={{
         withCredentials: true,
+        validateStatus: (status) => {
+          if (status === 401) {
+            signOut();
+          }
+          return true;
+        },
       }}
     >
       <ThemeProvider theme={mdTheme}>
