@@ -25,7 +25,7 @@ export class AuthService {
       throw new UnauthorizedException('Email ou senha incorretos.');
     }
 
-    // Passport strategy will call this method with only the email
+    // JWT strategy will call this method with only the email
     if (!password) {
       return user;
     }
