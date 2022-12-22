@@ -93,12 +93,18 @@ export const AuthenticatedLayout: React.FC<IAuthenticatedLayout> = ({
           </Toolbar>
           <Divider />
           <List component="nav">
-            {Object.entries(appRoutes).map(([key, value]) => (
-              <ListItemButton key={key} onClick={() => router.push(value.path)}>
-                <ListItemIcon>{value.icon}</ListItemIcon>
-                <ListItemText primary={value.title} />
-              </ListItemButton>
-            ))}
+            {Object.entries(appRoutes).map(
+              ([key, value]) =>
+                value.icon && (
+                  <ListItemButton
+                    key={key}
+                    onClick={() => router.push(value.path)}
+                  >
+                    <ListItemIcon>{value.icon}</ListItemIcon>
+                    <ListItemText primary={value.title} />
+                  </ListItemButton>
+                )
+            )}
           </List>
         </Drawer>
         <Box

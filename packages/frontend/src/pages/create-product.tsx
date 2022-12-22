@@ -80,7 +80,7 @@ const Page = () => {
             label="Preço do produto"
             fullWidth
             margin="normal"
-            currency
+            currency={1} // Fix styled-component warning
           />
           <Button
             disabled={isSubmitting}

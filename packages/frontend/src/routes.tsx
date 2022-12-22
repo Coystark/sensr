@@ -1,7 +1,7 @@
 import React from "react";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import PeopleIcon from "@mui/icons-material/People";
-import BarChartIcon from "@mui/icons-material/BarChart";
+import ContentPasteIcon from "@mui/icons-material/ContentPaste";
 
 interface IRouteProps {
   authenticate?: boolean;
@@ -45,6 +45,6 @@ export const appRoutes: IRouteMapping = {
     authenticate: true,
     path: "/create-proposal",
     title: "Criar proposta",
-    icon: <BarChartIcon />,
+    icon: <ContentPasteIcon />,
   },
 };
