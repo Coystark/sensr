@@ -62,7 +62,6 @@ export class AuthService {
   }
 
   generatePasswordHash(password: string) {
-    console.log('password', password);
     const passwordHash = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
     return passwordHash;
   }

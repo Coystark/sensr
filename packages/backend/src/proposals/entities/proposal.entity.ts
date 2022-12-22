@@ -6,12 +6,10 @@ import { Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne } from 'typeorm';
 
 @Entity()
 export class Proposal extends BaseModel {
-  // Cria tabela intermediária
   @ManyToMany(() => Product)
   @JoinTable()
   products: Product[];
 
-  // Cria chave estrageira na tabela proposal
   @ManyToOne(() => Customer, (customer) => customer.proposals, {
     eager: true,
   })
