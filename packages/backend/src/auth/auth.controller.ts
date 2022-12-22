@@ -21,9 +21,7 @@ export class AuthController {
 
     const token = this.authService.generateToken(user);
 
-    res.cookie('accessToken', token, {
-      httpOnly: true,
-    });
+    this.authService.generateAccessCookie(res, token);
 
     return {
       user,
@@ -41,9 +39,7 @@ export class AuthController {
 
     const token = this.authService.generateToken(user);
 
-    res.cookie('accessToken', token, {
-      httpOnly: true,
-    });
+    this.authService.generateAccessCookie(res, token);
 
     return {
       user,

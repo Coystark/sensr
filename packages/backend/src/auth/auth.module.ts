@@ -15,10 +15,16 @@ import { User } from 'src/users/entities/user.entity';
     PassportModule,
     JwtModule.registerAsync({
       imports: [ConfigModule],
-      useFactory: (config: ConfigService) => ({
-        secret: config.get<string>('JWT_SECRET'),
-        signOptions: { expiresIn: '7d' },
-      }),
+      useFactory: (config: ConfigService) => {
+        const expires = config.get<number>('EXPIRES_IN');
+
+        return {
+          secret: config.get<string>('JWT_SECRET'),
+          signOptions: {
+            expiresIn: Date.now() + expires * 24 * 60 * 60 * 1000,
+          },
+        };
+      },
       inject: [ConfigService],
     }),
     TypeOrmModule.forFeature([User]),

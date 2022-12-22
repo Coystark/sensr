@@ -5,12 +5,15 @@ import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 import { User } from 'src/users/entities/user.entity';
 import { SignUpDto } from './dto/sign-up.dto';
+import { Response } from 'express';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class AuthService {
   constructor(
     @InjectRepository(User) private userRepo: Repository<User>,
     private jwtService: JwtService,
+    private configService: ConfigService,
   ) {}
 
   async validateUser(email: string, password?: string) {
@@ -64,5 +67,14 @@ export class AuthService {
   generatePasswordHash(password: string) {
     const passwordHash = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
     return passwordHash;
+  }
+
+  generateAccessCookie(res: Response, token: string) {
+    const expires = this.configService.get<number>('EXPIRES_IN');
+
+    res.cookie('accessToken', token, {
+      httpOnly: true,
+      expires: new Date(Date.now() + expires * 24 * 60 * 60 * 1000),
+    });
   }
 }
